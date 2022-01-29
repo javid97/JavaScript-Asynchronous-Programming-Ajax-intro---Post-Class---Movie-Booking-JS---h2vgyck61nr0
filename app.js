@@ -70,7 +70,7 @@ function renderLeftSeats(data) {
           let seat = document.createElement('div');
           seat.setAttribute('id', `booking-grid-${i + 1}`);
           seat.classList.add('seat', 'available-seat');
-          seat.innerText = i + 1;
+          seat.innerHTML = i + 1;
           bookingGrid1.appendChild(seat);
      }
      bookerGridHolder.appendChild(bookingGrid1);
