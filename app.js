@@ -69,7 +69,7 @@ function renderLeftSeats(data) {
      for (let i = 0; i < 12; i++) {
           let seat = document.createElement('div');
           seat.setAttribute('id', `booking-grid-${i + 1}`);
-          seat.classList.add('seat', 'available-seat');
+          seat.classList.add('seat', 'unavailable-seat');
           seat.innerText = i + 1;
           bookingGrid1.appendChild(seat);
      }
@@ -77,8 +77,8 @@ function renderLeftSeats(data) {
      renderRightSeats();
      data.forEach(seat => {
           let ele = document.getElementById(`booking-grid-${seat}`)
-          ele.classList.add('unavailable-seat');
-          ele.classList.remove('available-seat');
+          ele.classList.add('available-seat');
+          ele.classList.remove('unavailable-seat');
      })
      setTicketBooking();
 }
@@ -89,7 +89,7 @@ function renderRightSeats() {
      for (let i = 13; i <= 24; i++) {
           let seat = document.createElement('div');
           seat.setAttribute('id', `booking-grid-${i}`);
-          seat.classList.add('seat', 'available-seat');
+          seat.classList.add('seat', 'unavailable-seat');
           seat.innerText = i;
           bookingGrid2.appendChild(seat);
      }
