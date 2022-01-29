@@ -111,8 +111,10 @@ function saveSelectedSeat(seat) {
 }
 
 bookTicketBtn.addEventListener('click', () => {
-     booker.innerHTML = '';
-     confirmTicket();
+     if(seatsSelected.length > 1){
+          booker.innerHTML = '';
+          confirmTicket();
+     }
 })
 
 function confirmTicket(){
@@ -124,7 +126,7 @@ function confirmTicket(){
      let form = document.createElement('form');
      let formElements = `<input type="email" id="email" placeholder="email" required><br><br>
                          <input type="tel" id="phone" placeholder="phone" required><br><br>
-                         <button id="submitBtn" type="submit">Submit</button>`;
+                         <button id="submitBtn" type="submit">Purchase</button>`;
      form.setAttribute('method', 'post');
      form.setAttribute('id', 'customer-detail-form');
      form.innerHTML = formElements;
@@ -150,9 +152,14 @@ function renderSuccessMessage(email, phone){
      booker.innerHTML = '';
      let successElement = document.createElement('div');
      successElement.setAttribute('id', 'Success');
-     successElement.innerHTML = `<h3>Booking details</h3>
-                               <p>Seats: ${seatsSelected.join(", ")}</p>
-                              <p>Email: ${email}</p>
-                              <p>Phone number: ${phone}</p>`;
+     successElement.innerHTML = `Booking details
+                               Seats: ${seatsSelected.join(", ")}
+                              Email: ${email}
+                              Phone number: ${phone}`;
      booker.appendChild(successElement);
 }
+
+// `<h3>Booking details</h3>
+//                                <p>Seats: ${seatsSelected.join(", ")}</p>
+//                               <p>Email: ${email}</p>
+//                               <p>Phone number: ${phone}</p>`
