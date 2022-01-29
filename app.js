@@ -22,7 +22,7 @@ function createSeparateMovieTabs(data, wrapper) {
      let a = document.createElement('a');
      a.setAttribute('data-movie-name', `${data.name}`);
      a.classList.add('movie-link');
-     a.href = '#';
+     a.href = '#booker';
      let movieDiv = document.createElement('div');
      movieDiv.setAttribute('data-id', `${data.name}`);
      movieDiv.classList.add('movie');
