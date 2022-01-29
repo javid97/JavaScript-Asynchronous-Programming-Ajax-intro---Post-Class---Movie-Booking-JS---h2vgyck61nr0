@@ -106,12 +106,12 @@ function setEventsToSeats() {
 }
 
 function saveSelectedSeat(seat) {
-     if (!seat.classList.contains("selected-seat")) {
-          seat.classList.add('selected-seat');
+     if (!seat.classList.contains("select-seat")) {
+          seat.classList.add('select-seat');
           seatsSelected.push(seat.innerText);
           bookTicketBtn.classList.remove('v-none');
      } else {
-          seat.classList.remove('selected-seat');
+          seat.classList.remove('select-seat');
           seatsSelected = seatsSelected.filter(item => seat.innerText !== item);
           if (seatsSelected.length == 0){
                bookTicketBtn.classList.add('v-none');
