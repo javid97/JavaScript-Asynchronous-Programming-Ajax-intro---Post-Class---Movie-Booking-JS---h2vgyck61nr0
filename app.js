@@ -1,8 +1,8 @@
 import { fetchMovieAvailability, fetchMovieList } from "./api.js"
 const mainElement = document.getElementById('main');
-const bookerGridHolder = document.getElementById('booker-grid-holder');
-const bookTicketBtn = document.getElementById('book-ticket-btn');
-const booker = document.getElementById('booker');
+let bookerGridHolder = document.getElementById('booker-grid-holder');
+let bookTicketBtn = document.getElementById('book-ticket-btn');
+let booker = document.getElementById('booker');
 
 async function renderMovies() {
      mainElement.innerHTML = `<div id='loader'></div>`;
@@ -54,6 +54,13 @@ async function renderSeatsGrid(movieName) {
 }
 
 function renderLeftSeats(data) {
+     if(booker.firstElementChild.tagName !== "H3"){
+          booker.innerHTML = `<h3 class="v-none">Seat Selector</h3>
+                              <div id="booker-grid-holder"></div>
+                              <button id="book-ticket-btn" class="v-none">Book my seats</button>`;
+     }
+     bookerGridHolder = document.getElementById('booker-grid-holder');
+     bookTicketBtn = document.getElementById('book-ticket-btn');
      bookerGridHolder.innerHTML = '';
      booker.firstElementChild.classList.remove('v-none');
      let bookingGrid1 = document.createElement('div');
@@ -72,6 +79,7 @@ function renderLeftSeats(data) {
           ele.classList.add('unavailable-seat');
           ele.classList.remove('available-seat');
      })
+     setTicketBooking();
 }
 
 function renderRightSeats() {
@@ -109,13 +117,14 @@ function saveSelectedSeat(seat) {
           }
      }
 }
-
-bookTicketBtn.addEventListener('click', () => {
-     if(seatsSelected.length > 1){
-          booker.innerHTML = '';
-          confirmTicket();
-     }
-})
+function setTicketBooking(){
+     bookTicketBtn.addEventListener('click', () => {
+          if (seatsSelected.length > 1) {
+               booker.innerHTML = '';
+               confirmTicket();
+          }
+     })
+}
 
 function confirmTicket(){
      let confirmTicketElement = document.createElement('div');
