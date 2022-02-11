@@ -23,17 +23,11 @@ function createSeparateMovieTabs(data, wrapper) {
      a.setAttribute('data-movie-name', `${data.name}`);
      a.classList.add('movie-link');
      a.href = '#booker';
-     let movieDiv = document.createElement('div');
-     movieDiv.setAttribute('data-id', `${data.name}`);
-     movieDiv.classList.add('movie');
-     let movieDivWrapper = document.createElement('div');
-     movieDivWrapper.classList.add('movie-img-wrapper');
-     movieDivWrapper.style.backgroundImage = `url('${data.imgUrl}')`;
-     let movieHeading = document.createElement('h4');
-     movieHeading.innerText = data.name;
-     movieDiv.appendChild(movieDivWrapper);
-     movieDiv.appendChild(movieHeading);
-     a.appendChild(movieDiv);
+     // <a class="movie- link" href="/moviename">
+      a.innerHTML = `<div class="movie" data-id=${data.name}>
+         <div class="movie-img-wrapper" style="background-image:url(${data.imgUrl})"></div>
+         <h4>${data.name}</h4>
+       </div>`;
      wrapper.appendChild(a);
 }
 function setEventToLinks() {
