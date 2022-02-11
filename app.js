@@ -74,7 +74,7 @@ function createSeatsGrid(data){
      bookingGrid1.classList.add("booking-grid");
      for (let i = 1; i < 25; i++) {
        let seat = document.createElement("div");
-       seat.innerText = i;
+       seat.innerHTML = i;
        seat.setAttribute("id", `booking-grid-${i}`);
        if (data.includes(i)) seat.classList.add("seat", "unavailable-seat");
        else seat.classList.add("seat", "available-seat");
@@ -111,7 +111,7 @@ function saveSelectedSeat(seat) {
 }
 function setTicketBooking(){
      bookTicketBtn.addEventListener('click', () => {
-          if (seatsSelected.length > 1) {
+          if (seatsSelected.length > 0) {
                booker.innerHTML = '';
                confirmTicket();
           }
@@ -124,16 +124,20 @@ function confirmTicket(){
      let h3 = document.createElement('h3');
      h3.innerText = `Confirm your booking for seat numbers:${seatsSelected.join(",")}`;
      confirmTicketElement.appendChild(h3);
-     let form = document.createElement('form');
-     let formElements = `<input type="email" id="email" placeholder="email" required><br><br>
-                         <input type="tel" id="phone" placeholder="phone" required><br><br>
-                         <button id="submitBtn" type="submit">Purchase</button>`;
-     form.setAttribute('method', 'post');
-     form.setAttribute('id', 'customer-detail-form');
-     form.innerHTML = formElements;
-     confirmTicketElement.appendChild(form);
+     confirmTicketElement.appendChild(createForm());
      booker.appendChild(confirmTicketElement);
      success();
+}
+
+function createForm(){
+     let form = document.createElement("form");
+     let formElements = `<input type="email" id="email" placeholder="email" required><br><br>
+                         <input type="tel" id="phone" placeholder="phone" required><br><br>
+                         <input id="submitBtn" type="submit" value='purchase'>`;
+     form.setAttribute("method", "post");
+     form.setAttribute("id", "customer-detail-form");
+     form.innerHTML = formElements;
+     return form;
 }
 
 function success(){
@@ -151,16 +155,15 @@ function success(){
 
 function renderSuccessMessage(email, phone){
      booker.innerHTML = '';
-     let successElement = document.createElement('div');
-     successElement.setAttribute('id', 'Success');
-     successElement.innerHTML = `Booking details
-                               Seats: ${seatsSelected.join(", ")}
-                              Email: ${email}
-                              Phone number: ${phone}`;
-     booker.appendChild(successElement);
+     createSuccessMessage(email, phone);
 }
 
-// `<h3>Booking details</h3>
-//                                <p>Seats: ${seatsSelected.join(", ")}</p>
-//                               <p>Email: ${email}</p>
-//                               <p>Phone number: ${phone}</p>`
+function createSuccessMessage(email, phone){
+     let successElement = document.createElement("div");
+     successElement.setAttribute("id", "Success");
+     successElement.innerHTML = `<h3>Booking details</h3>
+                               <p>Seats: ${seatsSelected.join(", ")}</p>
+                              <p>Email: ${email}</p>
+                              <p>Phone number: ${phone}</p>`;
+     booker.appendChild(successElement);
+}
