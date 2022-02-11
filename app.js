@@ -68,7 +68,7 @@ function renderLeftSeats(data) {
      bookingGrid1.classList.add('booking-grid');
      for (let i = 0; i < 12; i++) {
           let seat = document.createElement('div');
-          seat.setAttribute('id', `booking-grid-gridgrid${i + 1}`);
+          seat.setAttribute('id', `booking-grid-grid${i + 1}`);
           seat.classList.add('seat', 'available-seat');
           seat.innerHTML = i + 1;
           bookingGrid1.appendChild(seat);
@@ -76,7 +76,7 @@ function renderLeftSeats(data) {
      bookerGridHolder.appendChild(bookingGrid1);
      renderRightSeats();
      data.forEach(seat => {
-          let ele = document.getElementById(`booking-grid-gridgrid${seat}`)
+          let ele = document.getElementById(`booking-grid-grid${seat}`)
           ele.classList.add('unavailable-seat');
           ele.classList.remove('available-seat');
      })
