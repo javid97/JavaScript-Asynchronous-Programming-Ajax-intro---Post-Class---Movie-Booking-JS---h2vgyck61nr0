@@ -155,7 +155,7 @@ function renderSuccessMessage(email, phone){
 
 function createSuccessMessage(email, phone){
      let successElement = document.createElement("div");
-     successElement.setAttribute("id", "Success");
+     successElement.setAttribute("id", "success");
      successElement.innerHTML = `<h3>Booking details</h3>
                                <p>Seats: ${seatsSelected.join(", ")}</p>
                               <p>Email: ${email}</p>
