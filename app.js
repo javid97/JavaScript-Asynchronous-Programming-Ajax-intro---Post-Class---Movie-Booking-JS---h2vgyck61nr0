@@ -8,7 +8,7 @@ async function renderMovies() {
      mainElement.innerHTML = `<div id='loader'></div>`;
      let movies = await fetchMovieList();
      let movieHolder = document.createElement('div');
-     movieHolder.setAttribute('class', 'movie-holder');
+     movieHolder.setAttribute('id', 'movie-holder');
      movies.forEach(movie => {
           createSeparateMovieTabs(movie, movieHolder);
      });
