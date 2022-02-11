@@ -49,11 +49,11 @@ async function renderSeatsGrid(movieName) {
      bookerGridHolder.innerHTML = `<div id='loader'></div>`;
      bookTicketBtn.classList.add('v-none');
      let data = await fetchMovieAvailability(movieName);
-     renderLeftSeats(data);
+     renderSeats(data);
      setEventsToSeats();
 }
 
-function renderLeftSeats(data) {
+function renderSeats(data) {
      if(booker.firstElementChild.tagName !== "H3"){
           seatsSelected = [];
           booker.innerHTML = `<h3 class="v-none">Seat Selector</h3>
@@ -64,37 +64,28 @@ function renderLeftSeats(data) {
      bookTicketBtn = document.getElementById('book-ticket-btn');
      bookerGridHolder.innerHTML = '';
      booker.firstElementChild.classList.remove('v-none');
-     let bookingGrid1 = document.createElement('div');
-     bookingGrid1.classList.add('booking-grid');
-     for (let i = 0; i < 12; i++) {
-          let seat = document.createElement('div');
-          seat.setAttribute('id', `booking-grid-${i + 1}`);
-          seat.classList.add('seat', 'available-seat');
-          seat.innerHTML = i + 1;
-          bookingGrid1.appendChild(seat);
+     createSeatsGrid(data)
+}
+
+function createSeatsGrid(data){
+     let bookingGrid1 = document.createElement("div");
+     let bookingGrid2 = document.createElement("div");
+     bookingGrid2.classList.add("booking-grid");
+     bookingGrid1.classList.add("booking-grid");
+     for (let i = 1; i < 25; i++) {
+       let seat = document.createElement("div");
+       seat.innerText = i;
+       seat.setAttribute("id", `booking-grid-${i}`);
+       if (data.includes(i)) seat.classList.add("seat", "unavailable-seat");
+       else seat.classList.add("seat", "available-seat");
+       if (i > 12) bookingGrid2.appendChild(seat);
+       else bookingGrid1.appendChild(seat);
      }
      bookerGridHolder.appendChild(bookingGrid1);
-     renderRightSeats();
-     data.forEach(seat => {
-          let ele = document.getElementById(`booking-grid-${seat}`)
-          ele.classList.add('unavailable-seat');
-          ele.classList.remove('available-seat');
-     })
+     bookerGridHolder.appendChild(bookingGrid2);
      setTicketBooking();
 }
 
-function renderRightSeats() {
-     let bookingGrid2 = document.createElement('div');
-     bookingGrid2.classList.add('booking-grid');
-     for (let i = 13; i <= 24; i++) {
-          let seat = document.createElement('div');
-          seat.setAttribute('id', `booking-grid-${i}`);
-          seat.classList.add('seat', 'available-seat');
-          seat.innerText = i;
-          bookingGrid2.appendChild(seat);
-     }
-     bookerGridHolder.appendChild(bookingGrid2);
-}
 let seatsSelected = [];
 function setEventsToSeats() {
      let AvaliableSeats = document.querySelectorAll('.available-seat');
