@@ -23,7 +23,6 @@ nav ul li{
     list-style-type: none;
 }
 main{
-    /* display: flex; */
     padding: 1rem;
     width: 100%;
 }
@@ -61,8 +60,8 @@ main{
 }
 .movie-img-wrapper{
     background-size: cover;
-    width: 100%;
-    height: 300px;
+    width: auto;
+    height: 250px;
 }
 #booker{
     display: flex;
@@ -72,12 +71,11 @@ main{
     gap: 1rem;
 }
 #booker-grid-holder{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
     gap: 2rem;
 }
 .booking-grid{
-    /* flex: 1; */
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -117,7 +115,11 @@ main{
 .v-none{
     visibility: hidden;
 }
-
+input{
+    width: 200px;
+    height: 35px;
+    padding: .5rem;
+}
 @keyframes rotate {
     from{transform: rotate(0deg);}
     to{transform: rotate(360deg);}
