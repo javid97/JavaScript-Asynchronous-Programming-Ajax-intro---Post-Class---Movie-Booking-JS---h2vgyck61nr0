@@ -128,7 +128,7 @@ function createForm(){
      let form = document.createElement("form");
      let formElements = `<input type="email" id="email" placeholder="email" required><br><br>
                          <input type="tel" id="phone" placeholder="phone" required><br><br>
-                         <input id="submitBtn" type="submit" value='purchase'>`;
+                         <button id="submitBtn" type="submit">Purchase</button>`;
      form.setAttribute("method", "post");
      form.setAttribute("id", "customer-detail-form");
      form.innerHTML = formElements;

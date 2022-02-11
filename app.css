@@ -115,7 +115,7 @@ main{
 .v-none{
     visibility: hidden;
 }
-input{
+input, button[type="submit"]{
     width: 200px;
     height: 35px;
     padding: .5rem;
