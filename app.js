@@ -22,7 +22,7 @@ function createSeparateMovieTabs(data, wrapper) {
      let a = document.createElement('a');
      a.setAttribute('data-movie-name', `${data.name}`);
      a.classList.add('movie-link');
-     a.href = '#booker';
+     a.href = `#${data.name}`;
      a.innerHTML = `<div class="movie" data-id=${data.name}>
                     <div class="movie-img-wrapper" style="background-image:url(${data.imgUrl})"></div>
                     <h4>${data.name}</h4>
